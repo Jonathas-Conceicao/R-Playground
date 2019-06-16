@@ -6,26 +6,70 @@ process <- function(file = "clean_data.csv") {
   table
 }
 
+base_graph <- function(df,
+                       col=1,
+                       title="Titulo",
+                       xlab="Eixo X",
+                       ylab="Contagem",
+                       conf=labs()) {
+  df <- data.frame(sort(df[,col]))
+  names(df) <- c("V1")
+  ggplot(df, aes(V1, ..count..)) +
+    conf +
+    labs(title = title) +
+    labs(x = xlab) +
+    labs(y = ylab)
+}
+
 bar_graph <- function(df,
                      col=1,
                      title="Titulo",
                      xlab="Eixo X",
                      ylab="Contagem",
-                     text_offset=2,
-                     conf=labs()) {
-  df <- data.frame(sort(df[,col]))
-  names(df) <- c("V1")
-  ggplot(df, aes(x=V1)) +
-    conf +
-    labs(title = title) +
-    labs(x = xlab) +
-    labs(y = ylab) +
+                     conf=labs(),
+
+                     text_offset=2) {
+  base_graph(df, col, title, xlab, ylab, conf) +
     geom_bar() +
     geom_text(
         aes(label=..count.., y=..count..+text_offset),
         stat="count",
         position = position_dodge(0.9)
     )
+}
+
+bar_summary_graph <- function(df,
+                     col=1,
+                     title="Titulo",
+                     xlab="Eixo X",
+                     ylab="Contagem",
+                     conf=labs(),
+                     text_offset=2) {
+  aux <- data.frame(sort(df[,col]))
+  names(aux) <- c("V1")
+  median <- median(aux$V1)
+  mean <- mean(aux$V1)
+  bar_graph(df, col, title, xlab, ylab, conf, text_offset) +
+    geom_vline(xintercept=median, colour="red") + 
+    geom_vline(xintercept=mean, colour="blue")
+}
+
+box_graph <- function(df,
+                       col=1,
+                       title="Titulo",
+                       xlab="Eixo X",
+                       ylab="Eixo Y",
+                       conf=labs()) {
+  df <- data.frame(sort(df[,col]))
+  names(df) <- c("V1")
+  ggplot(df) +
+    conf +
+    labs(title = title) +
+    labs(x = xlab) +
+    labs(y = ylab) +
+    scale_x_continuous(limits=c(-2,2)) +
+    geom_boxplot(aes(y=V1)) +
+    theme(axis.text.x=element_blank())
 }
 
 t <- process()
@@ -57,8 +101,7 @@ bar_graph(
     t,
     4,
     "Pratica Atividade Física",
-    "",
-    text_offset=1
+    ""
 )
 
 bar_graph(
@@ -68,19 +111,20 @@ bar_graph(
     ""
 )
 
-bar_graph(
+bar_summary_graph(
     t,
     8,
     "Tempo médio de uso diário do smartphone",
     "Número de horas",
-    text_offset=1
+    text_offset=1,
 )
 
-bar_graph(
+box_graph(
     t,
     9,
-    "Número de disciplinas cursadas",
-    ""
+    "Disciplinas cursadas",
+    "",
+    "Quantidade"
 )
 
 bar_graph(
@@ -90,7 +134,7 @@ bar_graph(
     ""
 )
 
-bar_graph(
+bar_summary_graph(
     t,
     11,
     "Satisfação com a estrutura da UFPel",
