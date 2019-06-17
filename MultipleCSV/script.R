@@ -21,14 +21,15 @@ ggplot(stack(table), aes(x = ind, y = values)) +
 library(plyr)
 read_fn <- function (file) {
   aux <- data.frame(read.csv(file, header=FALSE))
-  aux$group <- file
+  aux$class <- "Any Other Class"
   aux
 }
 list <- lapply(files, read_fn)
-table <- rbind.fill(list)
-table
 
-ggplot(table, aes(y=V1, x=group)) +
+ggplot(
+    dplyr::bind_rows(list, .id="file"),
+    aes(y=V1, x=file)
+) +
   scale_x_discrete(name = "Each file") +
   scale_y_discrete(name = "Values") +
   geom_boxplot()
