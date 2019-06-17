@@ -67,9 +67,13 @@ box_graph <- function(df,
     labs(title = title) +
     labs(x = xlab) +
     labs(y = ylab) +
-    scale_x_continuous(limits=c(-2,2)) +
+    scale_x_continuous(limits=c(-3,3)) +
     geom_boxplot(aes(y=V1)) +
-    theme(axis.text.x=element_blank())
+    theme(
+        axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank()
+    )
 }
 
 t <- process()
@@ -100,7 +104,7 @@ bar_graph(
 bar_graph(
     t,
     4,
-    "Pratica Atividade Física",
+    "Pratica alguma atividade física",
     ""
 )
 
@@ -111,7 +115,7 @@ bar_graph(
     ""
 )
 
-bar_summary_graph(
+bar_graph(
     t,
     8,
     "Tempo médio de uso diário do smartphone",
@@ -134,7 +138,7 @@ bar_graph(
     ""
 )
 
-bar_summary_graph(
+bar_graph(
     t,
     11,
     "Satisfação com a estrutura da UFPel",
@@ -144,3 +148,59 @@ bar_summary_graph(
         breaks=seq(0, 10, 2)
     )
 )
+
+## Groups
+
+ggplot(t, aes(x=t[,1], group=t[,10], fill=t[,10])) +
+  scale_fill_discrete(name="Já pensou em\ndesistir do curso") +
+  labs(title = "Curso") +
+  labs(x = "") +
+  labs(y = "Contagem") +
+  coord_flip() +
+  geom_bar() +
+  theme(legend.position = c(0.85, 0.9))
+
+ggplot(t, aes(x=t[,10], group=t[,10], fill=t[,10])) +
+  scale_fill_discrete(name="Já pensou em\ndesistir do curso") +
+  labs(title = "Quantas disciplinas já cursou") +
+  labs(x = "Já pensou em\ndesistir do curso") +
+  labs(y = "Contagem") +
+  geom_boxplot(
+      aes(y=t[,9]),
+      width=0.2
+  ) +
+  theme(
+      legend.position = c(0.15, 0.9),
+      axis.title.x=element_blank(),
+      axis.text.x=element_blank(),
+      axis.ticks.x=element_blank()
+  )
+
+ggplot(t, aes(x=t[,4], group=t[,4], fill=t[,4])) +
+  scale_fill_discrete(name="Pratica alguma\natividade física") +
+  labs(title = "Tempo médio de uso diário do smartphone") +
+  labs(x = "") +
+  labs(y = "Número de horas") +
+  geom_boxplot(
+      aes(y=t[,8]),
+      width=0.2
+  ) +
+  theme(
+      legend.position = c(0.15, 0.9),
+      axis.title.x=element_blank(),
+      axis.text.x=element_blank(),
+      axis.ticks.x=element_blank()
+  )
+
+ggplot(t, aes(x=t[,3], group=t[,3], fill=t[,3])) +
+  labs(title = "Satisfação com a estrutura da UFPel") +
+  labs(x = "Consumo de álcool") +
+  labs(y = "Nível") +
+  scale_y_continuous(
+      breaks=seq(0, 10, 2)
+  ) +
+  geom_boxplot(
+      aes(y=t[,11]),
+      width=0.4
+  ) +
+  guides(fill=FALSE)
