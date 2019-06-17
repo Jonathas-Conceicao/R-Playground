@@ -16,7 +16,7 @@ base_graph <- function(df,
   names(df) <- c("V1")
   ggplot(df, aes(V1, ..count..)) +
     conf +
-    labs(title = title) +
+    ## labs(title = "") +
     labs(x = xlab) +
     labs(y = ylab)
 }

@@ -1,0 +1,87 @@
+\documentclass[11pt]{scrartcl} % Font size
+\input{structure.tex} % Include the file specifying the document structure and custom commands
+
+\title{
+  \normalfont\normalsize
+  \textsc{Universidade Federal de Pelotas, Ciência da Computação}\\ % Your university, school and/or department name(s)
+  \vspace{25pt} % Whitespace
+  \rule{\linewidth}{0.5pt}\\ % Thin top horizontal rule
+  \vspace{20pt} % Whitespace
+  {\huge Coléta e Análise de Dados Estatísticos}\\ % The assignment title
+  \vspace{12pt} % Whitespace
+  \rule{\linewidth}{2pt}\\ % Thick bottom horizontal rule
+  \vspace{12pt} % Whitespace
+}
+
+\author{
+  \LARGE Jonathas Conceição\\
+  \LARGE Juan Rios
+}
+
+\date{\normalsize\today} % Today's date (\today) or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+
+\section{Introdução}
+
+bla bla bla, o questionário, bla bla bla.
+
+bla bla bla os dados que escolhemos bla bla bla.
+
+bla bla bla, objetivo de apresentar gráficos para visualização dos dados coletados.
+
+
+Neste trabalho apresentamos então dois conjuntos de gráficos,
+na seção \ref{sec:raw} apresentamos gráficos gerados diretamente dos dados coletados,
+já na seção \ref{sec:cross}, nós apresentamos gráficos crusando algumas informações dos dados de entrada.
+
+%----------------------------------------------------------------------------------------
+
+\section{Gráficos diretos}\label{sec:raw}
+
+bla bla bla, algum texto para não ficar seção seguida de subseção.
+
+\subsection{Curso}
+
+bla bla bla sobre info sobre a Figura \ref{fig:graph1}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[page=1, width=1.0\columnwidth]{Graphs.pdf}
+  \label{fig:graph1}
+  \caption{Distribuição do curso dos alunos}
+\end{figure}
+
+\subsection{Semestre de Ingresso}
+
+bla bla bla, semestre e ano de ingresso na Figura \ref{fig:graph2}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[page=2, width=1.0\columnwidth]{Graphs.pdf}
+  \label{fig:graph2}
+  \caption{Ano/semestre de ingresso dos alunos}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+
+\section{Gráficos cruzados}\label{sec:cross}
+
+bla bla bla, algum texto sobre os gráficos cruzados na Figura \ref{fig:graph10}.
+
+\subsection{Já pensou em desistir (por Curso)}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[page=10, width=1.0\columnwidth]{Graphs.pdf}
+  \label{fig:graph10}
+  \caption{bla bla bla legenda}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
