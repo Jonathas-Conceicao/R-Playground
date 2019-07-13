@@ -22,11 +22,11 @@ base_graph <- function(df,
 }
 
 bar_graph <- function(df,
-                     col=1,
-                     title="Titulo",
-                     xlab="Eixo X",
-                     ylab="Contagem",
-                     conf=labs(),
+                      col=1,
+                      title="Titulo",
+                      xlab="Eixo X",
+                      ylab="Contagem",
+                      conf=labs(),
 
                      text_offset=2) {
   base_graph(df, col, title, xlab, ylab, conf) +
@@ -55,11 +55,11 @@ bar_summary_graph <- function(df,
 }
 
 box_graph <- function(df,
-                       col=1,
-                       title="Titulo",
-                       xlab="Eixo X",
-                       ylab="Eixo Y",
-                       conf=labs()) {
+                      col=1,
+                      title="Titulo",
+                      xlab="Eixo X",
+                      ylab="Eixo Y",
+                      conf=labs()) {
   df <- data.frame(sort(df[,col]))
   names(df) <- c("V1")
   ggplot(df) +
