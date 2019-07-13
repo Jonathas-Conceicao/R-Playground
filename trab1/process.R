@@ -76,6 +76,17 @@ box_graph <- function(df,
     )
 }
 
+print_confidence_interval <- function(vec,
+                                      name
+                                      ) {
+  avg <- mean(vec)
+  sdev <- sd(vec)
+  n <- length(vec)
+  error <- qt(0.975,df=n-1)*sdev/sqrt(n)
+
+  print(sprintf("Intervalo para %s: [%.4f, %.4f]", name, avg-error, avg+error))
+}
+
 t <- process()
 
 bar_graph(
@@ -204,3 +215,7 @@ ggplot(t, aes(x=t[,3], group=t[,3], fill=t[,3])) +
       width=0.4
   ) +
   guides(fill=FALSE)
+
+print_confidence_interval(t[,8], "tempo médio de uso diário do smartphone em horas")
+print_confidence_interval(t[,9], "quantas disciplinas já cursou")
+print_confidence_interval(t[,11], "nível de satisfação com a infraestrutura da UFPel")
