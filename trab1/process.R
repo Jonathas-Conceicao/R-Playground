@@ -237,3 +237,7 @@ t.test(
     t[t[,1]=='Engenharia de Computação',][,11],
     alternative = "two.sided"
 )
+
+chisq.test(t[,10], t[,9])
+
+chisq.test(t[,4], t[,8])
