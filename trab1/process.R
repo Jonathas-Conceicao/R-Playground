@@ -219,3 +219,21 @@ ggplot(t, aes(x=t[,3], group=t[,3], fill=t[,3])) +
 print_confidence_interval(t[,8], "tempo médio de uso diário do smartphone em horas")
 print_confidence_interval(t[,9], "quantas disciplinas já cursou")
 print_confidence_interval(t[,11], "nível de satisfação com a infraestrutura da UFPel")
+
+t.test(
+    t[t[,1]=='Ciência da Computação',][,8],
+    t[t[,1]=='Engenharia de Computação',][,8],
+    alternative = "two.sided"
+)
+
+t.test(
+    t[t[,1]=='Ciência da Computação',][,9],
+    t[t[,1]=='Engenharia de Computação',][,9],
+    alternative = "two.sided"
+)
+
+t.test(
+    t[t[,1]=='Ciência da Computação',][,11],
+    t[t[,1]=='Engenharia de Computação',][,11],
+    alternative = "two.sided"
+)

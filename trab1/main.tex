@@ -1,5 +1,6 @@
 \documentclass[11pt]{scrartcl} % Font size
 \input{structure.tex} % Include the file specifying the document structure and custom commands
+\usepackage{multirow}
 
 \title{
   \normalfont\normalsize
@@ -179,7 +180,7 @@ Gráfico que demonstra a satisfação com a infraestrutrau da UFPel. Apresentou 
 \section{Inferência de valores}
 
 Com os valores das amostras coletadas podemos estimar valores da população,
-nesta Seção apresentamos uma tabela para as médias de alguns valores da população.
+nesta Seção apresentamos na Tabela \ref{tab1} as médias dos valores numéricos estimados para população.
 Todas as medidas foram calculadas sobre um nível de confiança de $95\%$ e
 usando a Distribuição \textit{t de Student}.
 
@@ -193,6 +194,23 @@ Número de disciplinas cursadas                                                 
 \begin{tabular}[c]{@{}l@{}}Nível de satisfação com\\ a estrutura da UFPel\end{tabular}     & {[}6.4821; 7.0065{]}   \\ \hline
 \end{tabular}
 \caption{Intervalo da média da população sobre um intervalo de confiança de $95\%$}
+\label{tab1}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l|c|c|c}
+\hline
+\multicolumn{1}{c|}{Variável}                                                                               & Media Estimada      & Valor-P                  & Conclusão                                                                                    \\ \hline
+\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Tempo médio de uso diário\\ do smartphone em horas\end{tabular}} & Ciência: 4.7926     & \multirow{2}{*}{0.9233}  & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Há diferença real\\ entre as médias\end{tabular}} \\ \cline{2-2}
+                                                                                                            & Engenharia: 4.8478  &                          &                                                                                              \\ \hline
+\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Número de disciplinas cursadas                \end{tabular}}     & Ciência: 32.2561    & \multirow{2}{*}{0.04849} & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Há diferença real\\ entre as médias\end{tabular}} \\ \cline{2-2}
+                                                                                                            & Engenharia: 26.8913 &                          &                                                                                              \\ \hline
+\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Nível de satisfação com\\ a estrutura da UFPel\end{tabular}}     & Ciência: 6.5853     & \multirow{2}{*}{0.1839}  & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Há diferença real\\ entre as médias\end{tabular}} \\ \cline{2-2}
+                                                                                                            & Engenharia: 7.0000  &                          &                                                                                              \\ \hline
+\end{tabular}
+\caption{Comparação das médias de alunos da Ciência e Engenharia da Computação}
+\label{tab2}
 \end{table}
 
 \clearpage
